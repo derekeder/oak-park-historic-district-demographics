@@ -8,7 +8,9 @@ Oak Park has 3 Historic Districts:
 
 This project uses the `census_area` library to pull racial demographics from the 2020 decennial census based on census blocks that make up the geographies of each of these 3 districts.
 
-Relevent links:
+_Note that due to the irregular shape of these historic disticts, census blocks, the smallest census geography, is being used to assemble population data. The most recent data we have at this level is the 2020 decennial census._
+
+Relevant links:
 
 - Census Area docs: https://census-area.readthedocs.io/en/latest/
 - 2020 Decennial Census tables: https://api.census.gov/data/2020/dec/pl/variables.html
