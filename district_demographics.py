@@ -19,7 +19,7 @@ with open('data/oak-park-historic-districts.geojson', 'r') as f:
 table_map = {
     'black': ['P1_004N'],
     'hispanic': ['P2_002N'],
-    'white': ['P4_005N'],
+    'white': ['P1_003N'],
     'asian': ['P1_006N'],
     'two+': ['P1_009N'],
     'total': ['P1_001N']
