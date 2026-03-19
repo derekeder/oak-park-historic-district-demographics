@@ -16,16 +16,25 @@ with open('data/oak-park-municipal-boundary.geojson', 'r') as f:
 with open('data/oak-park-historic-districts.geojson', 'r') as f:
     districts = json.load(f)
 
-table_map = {
-    'black': ['P1_004N'],
-    'hispanic': ['P2_002N'],
-    'white': ['P1_003N'],
-    'asian': ['P1_006N'],
-    'two+': ['P1_009N'],
-    'total': ['P1_001N']
+table_map_2010 = {
+    'black': 'P001004',
+    'hispanic': 'P002002',
+    'white': 'P001003',
+    'asian': 'P001006',
+    'two+': 'P001009',
+    'total': 'P001001'
 }
 
-header = ['Area'] + sorted(table_map.keys())
+table_map_2020 = {
+    'black': 'P1_004N',
+    'hispanic': 'P2_002N',
+    'white': 'P1_003N',
+    'asian': 'P1_006N',
+    'two+': 'P1_009N',
+    'total': 'P1_001N'
+}
+
+header = ['Area'] + sorted(table_map_2010.keys())
 
 writer.writerow(header)
 
@@ -37,12 +46,11 @@ for area in all_areas:
     # get populations
     population_obj = {}
 
-    for demographic, tables in table_map.items():
+    for demographic, table in table_map_2010.items():
         population = 0
-        for table in tables:
-            census_data = c.pl.geo_block(('NAME', table), area['geometry'], 2020)
-            for geo, vals, overlap in census_data:
-                population += int(vals[table])
+        census_data = c.pl.geo_block(('NAME', table), area['geometry'], 2010)
+        for geo, vals, overlap in census_data:
+            population += int(vals[table])
         population_obj.update({demographic: population})
 
     # write to csv
